@@ -37,16 +37,17 @@ Using the Intersection Observer.
 Firstly, what we will want to find out is if the browser supports the Intersection Observer API.
 We can write a condition to check:
 
-
+```Javascript
     if ('IntersectionObserver' in window) {
         console.log("IntersectionObserver is supported!");
     } else {
         console.log("IntersectionObserver is not supported!");
     }
+```
 
 The `ItersectionObserver` object is usually structure like this:
 
-
+```Javascript
     let options= {
         root: null,
         rootMargin: '0px',
@@ -61,6 +62,7 @@ The `ItersectionObserver` object is usually structure like this:
     
     let observerObj = new IntersectionObserver(callback, options);
     observerObj.observe();
+```
 
 So the `IntersectionObserver` object accepts two arguments:
 
@@ -135,6 +137,7 @@ Setting Up the Application.
 Not to waste time, I have created a starter project. It is available on my GitHub repository. 
 To start the application running, open your terminal to a new work folder and run the following commands:
 
+```shell
     git clone https://github.com/wolz-CODElife/Tiktok-clone.git
 
 
@@ -142,7 +145,7 @@ To start the application running, open your terminal to a new work folder and ru
 
 
     npm install
-
+```
 In the folder downloaded, the following files and directories are present:
 
 
@@ -154,7 +157,7 @@ So we will update the `Video.js` component to play/stop a video depending on its
 
 Inside the `Video.js` file, put the following code:
 
-
+```Javascript
     import React, { useEffect, useRef, useState } from "react";
     import "./Video.css";
     import VideoFooter from "./VideoFooter";
@@ -205,7 +208,7 @@ Inside the `Video.js` file, put the following code:
       );
     };
     export default Video;
-    
+```    
 
 What is happening here is: we imported the custom hook which is `useElementOnScreen`, then we use the value returned from the hook(which could be true or false) as the `isVisible` value.
 Take note, we set the options for the Intersection Observer:
@@ -216,25 +219,27 @@ Take note, we set the options for the Intersection Observer:
 
 Then we use `UseEffect` to change the `playing` state of the video if the `isVisible` value changes.
 
-
+```Javascript
     if (isVisibile) {
-          if (!playing) {        
-            videoRef.current.play();
-            setPlaying(true)
-          }
-        }
-        else {
-          if (playing) {        
-            videoRef.current.pause();
-            setPlaying(false)
-          }
-        }
-
+      if (!playing) {        
+        videoRef.current.play();
+        setPlaying(true)
+      }
+    }
+    else {
+      if (playing) {        
+        videoRef.current.pause();
+        setPlaying(false)
+      }
+    }
+```
 This code basically means if the video is visible, set the playing state to `true` if it is not yet playing, and if the video is not visible, set the playing state to `false`.
 
 With this done, if we run the application using:
 
+```shell
     npm start
+```
 
 If everything went well, we should have something like this:
 
@@ -244,7 +249,7 @@ If everything went well, we should have something like this:
 
 If you wish to change the videos or even use a live database, edit the `video` state in `App.js`. Currently, we have this array of objects:
 
-
+```Javascript
     [
         {
           url: 'https://res.cloudinary.com/codelife/video/upload/v1633232723/tiktok-clone/tiktok2_qxafx3.mp4',
@@ -274,6 +279,8 @@ If you wish to change the videos or even use a live database, edit the `video` s
           shares: 40
         },
       ]
+```
+
 Conclusion
 
 Having created the application successfully, we should have learnt how Intersection Observer works and how you can implement the autoplay feature in TikTok, Instagram or Twitter with it.
