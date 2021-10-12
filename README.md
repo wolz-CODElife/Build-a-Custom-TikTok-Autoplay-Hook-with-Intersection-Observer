@@ -88,8 +88,7 @@ The `options` object contains properties that affect the outcome of a `callback`
 - `rootMargin` by default is zero else, it can be valued as CSS margin. This gives the parent/root element some margin before detecting intersection.
 - `threshold` can be either a number or an array of numbers. It represents to what percentage the target element should intersect the parent/root before the callback function is executed. The accepted values range from 0 to 1. If it is 0 then, it means the slightest pixel of the target element needs to intersect with its parent/root element, if it is 0.5, 50% of the target element needs to intersect with its parent/root else, if the value is 1, then 100% of the target element needs to intersect with its parent/root element for the callback function to be executed.
 Targeting an Element to be Observed.
-
-
+```Javascript
     /*
     In VanillaJs we can use querySelector to select a DOM element like this...
     */
@@ -100,9 +99,9 @@ Targeting an Element to be Observed.
     let targetRef = useRef(null); //Set a component to be ref of targetRef
     let targetElement = targetRef.current
     observerObj.observe(targetElement)
+```
 Creating an Intersection Observer Custom Hook in React
-
-
+```Javascript
     import { useEffect, useMemo, useState } from 'react'
     const useElementOnScreen = (options, targetRef) => {
         const [isVisibile, setIsVisible] = useState()
@@ -125,7 +124,7 @@ Creating an Intersection Observer Custom Hook in React
         return isVisibile
     }
     export default useElementOnScreen 
-
+```
 Here, we are accepting `options` and `targetRef` as props then, we set a default state for the element where its visibility is null/false.
 Inside our callback function, we are setting the `isVisible` state to the value returned when checking if the entry `isIntersecting`(we are always expecting true or false).
 After observing the target element, we return the `isVisible` state.
